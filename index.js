@@ -4,7 +4,7 @@ const port = 5000;
 
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true);
-mongoose.connect('mongodb+srv://jungmin86:jungmin86@youtubeclone.qlbjgzm.mongodb.net/?retryWrites=true&w=majority').
+mongoose.connect('mongodb+srv://jungmin86:jungmin86@youtubeclone.qlbjgzm.mongodb.net/boilerplate?retryWrites=true&w=majority').
 then(() => console.log("MongoDB Connected..."))
 .catch(err => console.log(err));
 
