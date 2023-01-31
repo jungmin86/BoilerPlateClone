@@ -34,7 +34,7 @@ function LoginPage() {
         if(response.payload.loginSuccess) {
           navigate('/');
         } else {
-          alert('Error !');
+          alert('로그인 실패');
         }
       })
 
