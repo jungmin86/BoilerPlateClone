@@ -1,6 +1,14 @@
-import React, { useState } from 'react'
+// import { Axios } from 'axios';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../../_actions/user_action.js';
+import { useNavigate } from 'react-router-dom'
+
 
 function LoginPage() {
+
+  const disaptch = useDispatch();
+  let navigate = useNavigate();
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
@@ -12,7 +20,24 @@ function LoginPage() {
     setPassword(event.currentTarget.value);
   }
 
-  const onSubmit = () => {
+  const onSubmit = (event) => {
+    event.preventDefault(); //중요 -> 로그인을 할 때마다 페이지 새로고침 방지
+    // console.log(Email);
+    // console.log(Password);
+    let body = {
+      email:Email,
+      password: Password
+    }
+
+    disaptch(loginUser(body))
+      .then(response => {
+        if(response.payload.loginSuccess) {
+          navigate('/');
+        } else {
+          alert('Error !');
+        }
+      })
+
     
   }
   
@@ -42,4 +67,4 @@ function LoginPage() {
   )
 }
 
-export default LoginPage
+export default LoginPage;
